@@ -246,7 +246,7 @@
   - `FPSInfoService$CurFPSThread.smali` was hardcoded to read Qualcomm sysfs node `/sys/module/primary_display/parameters/display_framerate_main`.
   - On MediaTek MT6768/MT6769Z, this node does not exist, causing `readOneLine()` to catch `FileNotFoundException` and unconditionally fall back to static `"60"`.
 - **Fix Applied:**
-  1. Patched [`FPSInfoService.smali`](./realme_parts/decompiled/smali/com/realmeparts/FPSInfoService.smali) and [`FPSInfoService$CurFPSThread.smali`](./realme_parts/decompiled/smali/com/realmeparts/FPSInfoService$CurFPSThread.smali) to read `/dev/realme_fps`.
+  1. Patched `realme_parts/.../FPSInfoService.smali` and `realme_parts/.../FPSInfoService$CurFPSThread.smali` to read `/dev/realme_fps`.
   2. Integrated a continuous background hardware FPS monitor loop into `/system/bin/n30a_fixes.sh` (running natively under `init` with root context):
      - **3D / Gaming:** Queries MediaTek hardware frame stabilization engine (`/sys/kernel/debug/fpsgo/fstb/fpsgo_status`).
      - **UI & System:** Parses SurfaceFlinger's Hardware Composer (HWC) circular FPS ring buffer (`dumpsys SurfaceFlinger`), accurately tracking millisecond-accurate display presentation deltas.
@@ -324,14 +324,14 @@
 ---
 
 ### Task 16: FPS Overlay Foreground Service Lifecycle Promotion (Preventing Background Kills)
-- **Target Location:** `/system/priv-app/RealmeParts/RealmeParts.apk` ([`FPSInfoService.smali`](./realme_parts/decompiled/smali/com/realmeparts/FPSInfoService.smali), [`Utils.smali`](./realme_parts/decompiled/smali/com/realmeparts/Utils.smali))
+- **Target Location:** `/system/priv-app/RealmeParts/RealmeParts.apk` (`FPSInfoService.smali`, `Utils.smali`)
 - **Technical Root Cause:**
   - `FPSInfoService` was started as a standard Android background service without a foreground notification.
   - Under heavy memory pressure (such as running 3D games like PUBG Mobile or multitasking), Android's Low Memory Killer (LMK) and background execution limiters killed background services without notice, causing the floating FPS overlay to disappear spontaneously.
 - **Fix Applied:**
   - Promoted `FPSInfoService` to a persistent Android Foreground Service:
-    1. Modified [`FPSInfoService.smali`](./realme_parts/decompiled/smali/com/realmeparts/FPSInfoService.smali) to create a low-priority notification channel (`fps_info_channel`) and invoke `startForeground(NOTIFICATION_ID, notification)`.
-    2. Updated [`Utils.smali`](./realme_parts/decompiled/smali/com/realmeparts/Utils.smali) to launch the service via `Context.startForegroundService(intent)` instead of `startService(intent)`.
+    1. Modified `realme_parts/.../FPSInfoService.smali` (lines 1248-1266) to create a low-priority notification channel (`fps_info_channel`) and invoke `startForeground(NOTIFICATION_ID, notification)`.
+    2. Updated `realme_parts/.../Utils.smali` (lines 42-58) to launch the service via `Context.startForegroundService(intent)` instead of `startService(intent)`.
     3. Granted `android.permission.FOREGROUND_SERVICE` and registered service attributes in `AndroidManifest.xml`.
 - **Verification:** The floating FPS meter remains continuously visible and rock-solid during intensive 3D gaming and heavy multi-tasking without getting killed.
 

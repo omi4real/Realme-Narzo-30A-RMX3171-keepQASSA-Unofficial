@@ -66,9 +66,9 @@ A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo
 * **🎨 LiveDisplay Picture Adjustment:** Full hardware RGB calibration and saturation sliders enabled in Settings without triggering MediaTek SurfaceFlinger hardware composer lockups.
 * **📶 Dual-Band 5 GHz Hotspot (`wifi-service.jar`):** Overrode MediaTek stock constraints to allow full 5 GHz Wi-Fi hotspot broadcasting.
 * **🔋 Dynamic Thermal-Charging Governor (`scripts/n30a_fixes_current.sh`):** Real-time background thermal daemon scaling charging speeds safely up to 150% below 38 °C and tapering down dynamically as thermals increase.
-* **🚀 Overclockable Display Refresh Rate Tool (`scripts/build_display_oc_packages.py`):** Custom kernel MIPI DSI clock patcher tool that lets adventurous users overclock their display refresh rate beyond 60 Hz *(⚠️ Experimental / Panel Lottery: My cheap third-party replacement panel topped out at 64 Hz, while original factory panels or different replacement panels may clock higher or lower. Use the script at your own risk!)*.
-* **⚙️ RealmeParts Hardware Suite (`realme_parts/`):** Ported device features app providing real-time FPS overlay, USB-OTG quick toggle, and hardware performance switches.
-* **🔊 Extra Flashable Addons (Audio Boost & Game Unlocker):** Optional modular add-ons including loudspeaker acoustic gain boost (`N30A_AudioBoost_Magisk.zip`) and dynamic 90/120 FPS flagship game spoofing (`Infinix_GT50Pro_S25Ultra_GameUnlocker.zip`).
+* **🚀 Overclockable Display Refresh Rate Tool:** Custom kernel MIPI DSI clock patcher tool that lets adventurous users overclock their display refresh rate beyond 60 Hz. Tooling and AnyKernel3 generators are hosted in the standalone [**Display OC Toolkit**](https://github.com/omi4real/Realme-Narzo-30A-Display-OC-Toolkit) repository *(⚠️ Experimental / Panel Lottery: Replacement panels vary widely; use at your own risk!)*.
+* **⚙️ RealmeParts Hardware Suite:** Pre-baked device features app providing real-time FPS overlay, USB-OTG quick toggle, and hardware performance switches.
+* **🔊 Extra Flashable Addons (Audio Boost & Game Unlocker):** Modular companion addons including loudspeaker acoustic gain boost (`N30A_AudioBoost_Magisk.zip`) and dynamic 90/120 FPS flagship game spoofing (`Infinix_GT50Pro_S25Ultra_GameUnlocker.zip`), hosted in the [**Magisk Addons**](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons) repository.
 
 ---
 
@@ -90,11 +90,11 @@ All flashable binaries, recovery packages, and companion addons are hosted on th
 | :--- | :--- |
 | **Base ROM (Custom ROM Port)**<br><sub>Full flashable Android 10 OS (~1.07 GB)<br>*(RealmeParts, Unified Settings, 5GHz Hotspot & Color Fixes are pre-baked!)*</sub> | **File:** `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`<br>**MD5:** `358b6c59918f7a2a2167317d3d5be199` |
 | **Google Apps (LiteGapps)**<br><sub>Patched ARM64 native Play Services & Store (~64 MB)</sub> | **File:** `LiteGapps-arm64-10.0-RMX3171-Patched.zip`<br>**MD5:** `1f88d8c33284f7a7c7534283256f663b` |
-| **Game Unlocker Addon (Optional)**<br><sub>Magisk high-FPS flagship spoof module (~4.4 MB)</sub> | **File:** `Infinix_GT50Pro_S25Ultra_GameUnlocker.zip`<br>**MD5:** `4e31d218a1858317375261548705c8ab` |
-| **Audio Boost Addon (Optional)**<br><sub>Loudspeaker output boost Magisk module (~3 KB)</sub> | **File:** `N30A_AudioBoost_Magisk.zip`<br>**MD5:** `e8ffbb0f5ffcc1061dab72e7fd6868b1` |
+| **Game Unlocker Addon (Optional)**<br><sub>Magisk high-FPS flagship spoof module (~4.4 MB)</sub> | **File:** [`Infinix_GT50Pro_S25Ultra_GameUnlocker.zip`](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons/releases)<br>**MD5:** `4e31d218a1858317375261548705c8ab`<br><sub>Source: [Magisk Addons Repo](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons)</sub> |
+| **Audio Boost Addon (Optional)**<br><sub>Loudspeaker output boost Magisk module (~3 KB)</sub> | **File:** [`N30A_AudioBoost_Magisk.zip`](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons/releases)<br>**MD5:** `e8ffbb0f5ffcc1061dab72e7fd6868b1`<br><sub>Source: [Magisk Addons Repo](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons)</sub> |
 
 > [!NOTE]
-> **Display Overclocking:** Pre-built display overclock packages are intentionally omitted from public downloads because panel hardware tolerances vary significantly across replacement or factory LCDs. If you wish to build a customized display overclock package tuned for your own panel, use our automated patcher: [`scripts/build_display_oc_packages.py`](./scripts/build_display_oc_packages.py).
+> **Display Overclocking:** Pre-built display overclock packages are intentionally omitted from public downloads because panel hardware tolerances vary significantly across replacement or factory LCDs. If you wish to build a customized display overclock package tuned for your own panel, use our standalone toolkit: [**Realme-Narzo-30A-Display-OC-Toolkit**](https://github.com/omi4real/Realme-Narzo-30A-Display-OC-Toolkit).
 
 ---
 
@@ -122,19 +122,12 @@ All flashable binaries, recovery packages, and companion addons are hosted on th
 ```text
 Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/
 ├── README.md                      # Project documentation & release overview
-├── FINAL_RELEASE_SUMMARY.md       # Master 76 KB reverse-engineering journal
+├── FINAL_RELEASE_SUMMARY.md       # Master reverse-engineering journal
 ├── LICENSE                        # Apache License 2.0 open-source license
-├── scripts/                       # Kernel patchers, thermal governor & diagnostic tools
-│   ├── build_display_oc_packages.py # Automated kernel MIPI overclock patcher
+├── scripts/                       # Charging daemon & system initialization tools
 │   ├── n30a_fixes_current.sh      # Thermal charging daemon & system initialization
 │   ├── rmx3171_charge_diag.sh     # Charging diagnostics & battery metrics tool
-│   ├── rmx3171.tweaks.rc          # Vendor init tweaks for Helio G85
-│   └── sdat2img.py                # Sparse image conversion utility
-├── realme_parts/                  # Realme Narzo 30A device features app source/smali
-├── game_unlocker_custom/          # High-FPS refresh & thermal spoofing Magisk module
-├── n30a_display_color_fix/        # LiveDisplay HSIC color calibration overlay module
-├── overlay_work/                  # Android framework device resource overlays
-├── img2sdat/                      # Sparse Android image conversion utilities
+│   └── rmx3171.tweaks.rc          # Vendor init tweaks for Helio G85
 └── screenshots/                   # Device verification & test screenshots
 ```
 

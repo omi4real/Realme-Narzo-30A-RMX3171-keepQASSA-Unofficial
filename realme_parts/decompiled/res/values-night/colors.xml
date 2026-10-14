@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="action_buttons_bg_color">#ff1c1e20</color>
-    <color name="advanced_outline_color">#ffffffff</color>
-    <color name="switchbar_switch_thumb_tint">@android:color/black</color>
-    <color name="switchbar_switch_track_tint">#82000000</color>
-</resources>

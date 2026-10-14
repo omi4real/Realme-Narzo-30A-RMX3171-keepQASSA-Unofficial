@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="horizontal" android:background="@drawable/settings_action_buttons_background" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="20.0dip" android:layout_marginStart="?android:listPreferredItemPaddingStart" android:layout_marginEnd="?android:listPreferredItemPaddingStart"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <Button android:id="@id/button1" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/SettingsActionButton" />
-    <Button android:id="@id/button2" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/SettingsActionButton" />
-    <Button android:id="@id/button3" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/SettingsActionButton" />
-    <Button android:id="@id/button4" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0" style="@style/SettingsActionButton" />
-</LinearLayout>

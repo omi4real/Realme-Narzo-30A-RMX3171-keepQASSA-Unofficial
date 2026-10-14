@@ -67,3 +67,12 @@ realme_parts/*.apk
 AGENTS.md
 AIDER_HANDOFF.md
 docs/
+
+# Decoupled standalone ecosystems (Magisk Addons & Display OC Toolkit)
+/game_unlocker_custom/
+/realme_parts/
+/n30a_display_color_fix/
+/overlay_work/
+/img2sdat/
+scripts/build_display_oc_packages.py
+scripts/sdat2img.py
