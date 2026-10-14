@@ -66,4 +66,4 @@ realme_parts/*.apk
 # Internal AI assistant handoff and prompt docs
 AGENTS.md
 AIDER_HANDOFF.md
-docs/agent_handoff.md
+docs/
