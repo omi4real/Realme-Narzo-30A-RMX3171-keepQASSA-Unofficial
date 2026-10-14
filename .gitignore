@@ -1,0 +1,69 @@
+# ==============================================================================
+# RMX3171 Custom ROM Port - Git Ignore
+# ==============================================================================
+
+# Heavy ROM images, vendor dumps, and extracted system trees
+/original/
+/modified_rom/
+/all_fixes_extracted/
+/scratch/
+/output/
+/vanilla_work/
+/styx_inspect/
+/pixelos_extracted/
+/backups/
+/webview_download/
+/spoof_inspect/
+/ims_inspect/
+/launcher3_decompiled/
+/launcher3_nores/
+/launcher3_inspect/
+/neolit_inspect/
+
+# Intermediate partition & disk images (> 50 MB)
+*.img
+*.bin
+*.sdat*
+*.raw
+
+# Build artifacts & caches
+build/
+dist/
+*.idsig
+*_unaligned.apk
+*_aligned.apk
+*_rebuilt.apk
+*_unsigned.apk
+
+# Sensitive credentials & keys
+adb_keys
+testkey.jks
+*.keystore
+*.jks
+*.rsa
+
+# Internal AI agent directories & inspect folders
+.agents/
+device_ims_inspect/
+
+# Third-party prebuilt downloads & root test binaries
+/*.apk
+/*.zip
+test_resetprop
+
+# AI assistant chat caches
+.aider*
+
+# Logs & temp files
+*.log
+logs/
+window_dump.xml
+realme_parts/*.apk
+*.tmp
+*~
+.DS_Store
+
+# Internal AI assistant handoff and prompt docs
+AGENTS.md
+AIDER_HANDOFF.md
+docs/agent_handoff.md

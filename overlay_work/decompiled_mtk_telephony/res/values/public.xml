@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public type="string" name="config_ims_mmtel_package" id="0x7f010000" />
+    <public type="string" name="config_ims_rcs_package" id="0x7f010001" />
+    <public type="string" name="overlay_name" id="0x7f010002" />
+</resources>

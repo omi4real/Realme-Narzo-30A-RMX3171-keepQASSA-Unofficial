@@ -1,0 +1,6 @@
+id=n30a_display_color_fix
+name=N30A Display Color Fix (RMX3171)
+version=v1.0
+versionCode=1
+author=RMX3171 KeepQassa Port
+description=Stops the ported LiveDisplay/Picture Adjustment boot hook from corrupting the MTK HWC color pipeline (grayscale, then black panel with backlight on ~1 min after every boot). Overlays a safe /system/bin/n30a_fixes.sh that only restores saturation via persist.sys.sf.color_saturation and never sends SurfaceFlinger transaction 1015.

@@ -1,0 +1,10 @@
+on property:sys.boot_completed=1
+    chmod 0666 /proc/cpufreq/cpufreq_power_mode
+    chmod 0666 /sys/module/ged/parameters/gx_force_cpu_boost
+    chmod 0666 /sys/module/ged/parameters/gx_game_mode
+    chmod 0666 /proc/gpufreq/gpufreq_opp_freq
+    chmod 0666 /proc/ppm/enabled
+    chmod 0666 /proc/touchpanel/double_tap_enable
+    exec - root -- /system/bin/cmd role add-role-holder --user 0 android.app.role.DIALER com.android.dialer
+    exec - root -- /system/bin/telecom set-default-dialer com.android.dialer
+    exec - root -- /system/bin/settings put global device_name "Realme Narzo 30A"

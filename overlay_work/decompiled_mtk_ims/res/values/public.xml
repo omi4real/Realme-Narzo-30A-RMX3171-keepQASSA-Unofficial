@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <public type="bool" name="config_carrier_volte_available" id="0x7f010000" />
+    <public type="bool" name="config_dynamic_bind_ims" id="0x7f010001" />
+    <public type="string" name="config_ims_package" id="0x7f020000" />
+    <public type="string" name="overlay_name" id="0x7f020001" />
+</resources>
