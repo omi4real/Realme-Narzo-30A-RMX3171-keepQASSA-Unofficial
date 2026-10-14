@@ -11,7 +11,7 @@
 
 An optimized, stable Android 10 (Q) Vanilla custom ROM port and comprehensive device toolkit for the **Realme Narzo 30A** (`RMX3171`), ported from `RMX2020`.
 
-[**Downloads**](#downloads) • [**Flashing Guide**](#flashing-instructions) • [**Device Specs**](#device-specs) • [**What's Working**](#system-status) • [**Credits**](#credits) • [**Technical Bible**](./FINAL_RELEASE_SUMMARY.md)
+[**Downloads**](#downloads) • [**Screenshots**](#screenshots) • [**Flashing Guide**](#flashing-instructions) • [**Device Specs**](#device-specs) • [**What's Working**](#system-status) • [**Credits**](#credits) • [**Technical Bible**](./FINAL_RELEASE_SUMMARY.md)
 
 </div>
 
@@ -71,19 +71,33 @@ An optimized, stable Android 10 (Q) Vanilla custom ROM port and comprehensive de
 
 ---
 
+<a id="screenshots"></a>
+## 📸 Screenshots & UI Preview
+
+| About Phone & Hardware | Homescreen & Launcher | LiveDisplay Color HSIC | RealmeParts & Real-Time FPS |
+| :---: | :---: | :---: | :---: |
+| <img src="./screenshots/about_phone.png" width="200" alt="About Phone & Hardware" /> | <img src="./screenshots/lawnchair_home2.png" width="200" alt="Homescreen & Launcher" /> | <img src="./screenshots/livedisplay.png" width="200" alt="LiveDisplay Color HSIC" /> | <img src="./screenshots/fps_live2.png" width="200" alt="RealmeParts FPS Overlay" /> |
+
+---
+
 <a id="downloads"></a>
 ## 📦 Downloads & Checksums
 
 All flashable binaries, recovery packages, and companion APKs are hosted on the **[Releases](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases)** page:
 
-| Deliverable | File | Description | MD5 Checksum |
-| :--- | :--- | :--- | :--- |
-| **Base ROM** | `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip` | Full flashable Android 10 OS (~1.07 GB) | `358b6c59918f7a2a2167317d3d5be199` |
-| **Google Apps** | `LiteGapps-arm64-10.0-RMX3171-Patched.zip` | ARM64 Play Services & Store (~64 MB) | `1f88d8c33284f7a7c7534283256f663b` |
-| **64Hz Display OC** | `RMX3171_Display_OC_64Hz.zip` | AnyKernel3 recovery installer (~12 MB) | `22d119f8a84ede853a20aebd967fe06b` |
-| **64Hz Boot Image** | `boot_rmx3171_64hz.img` | Standalone Magisk-rooted boot image (32 MB) | `8b8dc4ac72bed943be8ab06ad7c5f29b` |
-| **RealmeParts App** | `RealmeParts_signed.apk` | Ported device settings companion (~10 MB) | `0f5a6999f9f24382240b3dfb95c0dc26` |
-| **Game Unlocker** | `Infinix_GT50Pro_S25Ultra_GameUnlocker.zip` | Magisk high-FPS spoof module (~4.4 MB) | `4e31d218a1858317375261548705c8ab` |
+| Deliverable | File | MD5 Checksum |
+| :--- | :--- | :--- |
+| **Base ROM**<br><sub>Full flashable Android 10 OS (~1.07 GB)</sub> | `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip` | `358b6c59918f7a2a2167317d3d5be199` |
+| **Google Apps**<br><sub>ARM64 native Play Services & Store (~64 MB)</sub> | `LiteGapps-arm64-10.0-RMX3171-Patched.zip` | `1f88d8c33284f7a7c7534283256f663b` |
+| **64Hz Display OC**<br><sub>AnyKernel3 recovery installer (~12 MB)</sub> | `RMX3171_Display_OC_64Hz.zip` | `22d119f8a84ede853a20aebd967fe06b` |
+| **64Hz Boot Image**<br><sub>Standalone Magisk-rooted boot image (32 MB)</sub> | `boot_rmx3171_64hz.img` | `8b8dc4ac72bed943be8ab06ad7c5f29b` |
+| **RealmeParts App**<br><sub>Ported device settings companion (~10 MB)</sub> | `RealmeParts_signed.apk` | `0f5a6999f9f24382240b3dfb95c0dc26` |
+| **Game Unlocker**<br><sub>Magisk high-FPS spoof module (~4.4 MB)</sub> | `Infinix_GT50Pro_S25Ultra_GameUnlocker.zip` | `4e31d218a1858317375261548705c8ab` |
+| **Unified Settings APK**<br><sub>LiveDisplay & PIF integrated settings (~62 MB)</sub> | `Settings_signed.apk` | `d831fffb11d9656f0f9290f9b522fef6` |
+| **Display Color Fix**<br><sub>Optional boot desaturation fix (~3.5 KB)</sub> | `N30A_DisplayColorFix_Magisk.zip` | `54558e1bd770f1d5a4c4e8bad34d1a63` |
+| **GMS Update Fix**<br><sub>Optional Play Store self-update fix (~5 MB)</sub> | `N30A_GMS_UpdateFix_Magisk.zip` | `bac3a0d746ab18632ef02ce6abbfff2c` |
+| **Audio Boost Addon**<br><sub>Loudspeaker output boost module (~3 KB)</sub> | `N30A_AudioBoost_Magisk.zip` | `e8ffbb0f5ffcc1061dab72e7fd6868b1` |
+| **5GHz Hotspot Addon**<br><sub>Dual-band Wi-Fi tethering module (~1.1 MB)</sub> | `N30A_WiFi5GHz_Magisk.zip` | `32b2783585fc2c27e40a039bbb59b44a` |
 
 ---
 
@@ -113,6 +127,7 @@ All flashable binaries, recovery packages, and companion APKs are hosted on the 
 Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/
 ├── README.md                      # Project documentation & release overview
 ├── FINAL_RELEASE_SUMMARY.md       # Master 76 KB reverse-engineering journal
+├── LICENSE                        # Apache License 2.0 open-source license
 ├── docs/                          # In-depth technical architecture notes
 ├── scripts/                       # Kernel patchers, thermal governor & diagnostic tools
 │   ├── build_display_oc_packages.py # Automated kernel MIPI overclock patcher
@@ -147,6 +162,10 @@ Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/
 
 > [!NOTE]
 > For the complete reverse-engineering journal detailing the MediaTek SurfaceFlinger IPC fixes, smali register layouts, and GMS signature reconciliation, read [**`FINAL_RELEASE_SUMMARY.md`**](./FINAL_RELEASE_SUMMARY.md).
+
+For detailed post-mortems and targeted subsystem investigations:
+* 📄 **[LiveDisplay & SurfaceFlinger Color Calibration Post-Mortem](./docs/known_issue_display_color.md):** Analysis of MT6768 MDP hardware composer constraints, Transaction 1015 corruption, and desaturation resolution.
+* 📄 **[GMS Split-APK Self-Update & YouTube Spoofing Post-Mortem](./docs/known_issue_gms_update_youtube.md):** Deep-dive into Android 10 `PackageManagerService` signature verification, split-APK reconciliation, and package cert spoofing.
 
 ---
 
