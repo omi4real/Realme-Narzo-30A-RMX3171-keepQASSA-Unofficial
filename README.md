@@ -112,7 +112,7 @@ All flashable binaries, recovery packages, and companion addons are hosted on th
 2. **Flash the ROM ZIP:** Flash `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`.
 3. **Flash GApps (Optional):** Flash `LiteGapps-arm64-10.0-RMX3171-Patched.zip` *(Skip if you prefer pure Vanilla; flash if you need Play Store & Google services)*.
 4. **Flash Magisk (Optional, Recommended):** Flash Magisk (v30.7 or latest) for root, modules, and extra addons.
-5. **Format Data (MANDATORY):** Go to **Wipe** $\to$ **Format Data** $\to$ type `yes`. *(Do NOT skip this: format data is required to reset Android encryption and prevent bootloops!).*
+5. **Format Data (MANDATORY):** Go to **Wipe** → **Format Data** → type `yes`. *(Do NOT skip this: format data is required to reset Android encryption and prevent bootloops!).*
 6. **Reboot to System** & enjoy silky-smooth Android 10 performance!
 
 ---
