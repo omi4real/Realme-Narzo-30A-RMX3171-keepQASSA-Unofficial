@@ -75,40 +75,39 @@ chmod 0666 /sys/devices/system/cpu/cpufreq/schedutil/* 2>/dev/null
 echo "60.0" > /dev/realme_fps
 chmod 0666 /dev/realme_fps
 
-# 5c. Intelligent Fast Charge & Thermal Governor (BQ2589x 18W)
-# Restores 18W fast charging (~2.6A - 2.8A peak) while dynamically managing thermal limits
-echo 145 > /sys/module/oppo_bq2589x_charger/parameters/current_percent 2>/dev/null
+# 5c. Fast Charge Current Restoration (BQ2589x 18W Clean)
+# Sets current_percent to 100% (restores full 2A @ 9V QC 18W fast charging without adapter OCP collapse)
+# Eliminates artificial 150% scaling that causes low-battery charging disconnect loops and thermal overheating
+echo 100 > /sys/module/oppo_bq2589x_charger/parameters/current_percent 2>/dev/null
 
+# 5d. Game Mode State Enforcement & Performance Watchdog
 (
-    CHG_PARAM="/sys/module/oppo_bq2589x_charger/parameters/current_percent"
-    BAT_TEMP="/sys/class/power_supply/battery/temp"
-    CHG_STATUS="/sys/class/power_supply/battery/status"
-
     while true; do
-        sleep 10
-        [ -f "$CHG_PARAM" ] || continue
+        sleep 5
+        perf=$(getprop perf_profile)
+        tp_game=$(cat /proc/touchpanel/game_switch_enable 2>/dev/null)
+        if [ "$perf" = "1" ] || [ "$tp_game" = "1" ]; then
+            # Keep touchpanel sampling boost active
+            [ "$tp_game" != "1" ] && echo 1 > /proc/touchpanel/game_switch_enable 2>/dev/null
+            [ "$(cat /proc/touchpanel/oppo_tp_limit_enable 2>/dev/null | grep -o '[0-9]' | head -n 1)" != "0" ] && echo 0 > /proc/touchpanel/oppo_tp_limit_enable 2>/dev/null
+            [ "$(cat /proc/touchpanel/oppo_tp_direction 2>/dev/null | grep -o '[0-9]' | head -n 1)" != "1" ] && echo 1 > /proc/touchpanel/oppo_tp_direction 2>/dev/null
 
-        status=$(cat "$CHG_STATUS" 2>/dev/null)
-        if [ "$status" != "Charging" ]; then
-            continue
-        fi
-
-        temp=$(cat "$BAT_TEMP" 2>/dev/null)
-        [ -z "$temp" ] && continue
-
-        if [ "$temp" -lt 380 ]; then
-            target=150
-        elif [ "$temp" -lt 410 ]; then
-            target=135
-        elif [ "$temp" -lt 430 ]; then
-            target=115
-        else
-            target=100
-        fi
-
-        cur=$(cat "$CHG_PARAM" 2>/dev/null)
-        if [ "$cur" != "$target" ]; then
-            echo "$target" > "$CHG_PARAM" 2>/dev/null
+            # Keep CPU & GPU governors in sports / boost performance mode
+            [ "$(cat /sys/module/ged/parameters/gx_game_mode 2>/dev/null)" != "1" ] && echo 1 > /sys/module/ged/parameters/gx_game_mode 2>/dev/null
+            [ "$(cat /sys/module/ged/parameters/gx_force_cpu_boost 2>/dev/null)" != "1" ] && echo 1 > /sys/module/ged/parameters/gx_force_cpu_boost 2>/dev/null
+            case "$(cat /proc/cpufreq/cpufreq_power_mode 2>/dev/null)" in
+                *Performance*) ;;
+                *) echo 3 > /proc/cpufreq/cpufreq_power_mode 2>/dev/null ;;
+            esac
+            case "$(cat /proc/gpufreq/gpufreq_opp_freq 2>/dev/null)" in
+                *enabled*) ;;
+                *) echo 823000 > /proc/gpufreq/gpufreq_opp_freq 2>/dev/null ;;
+            esac
+            case "$(cat /proc/ppm/enabled 2>/dev/null)" in
+                *disabled*) ;;
+                *) echo 0 > /proc/ppm/enabled 2>/dev/null ;;
+            esac
+            [ "$perf" != "1" ] && setprop perf_profile 1
         fi
     done
 ) &
@@ -122,6 +121,16 @@ echo 145 > /sys/module/oppo_bq2589x_charger/parameters/current_percent 2>/dev/nu
     # Grant Realme Settings overlay and secure settings permissions
     appops set com.realmeparts SYSTEM_ALERT_WINDOW allow 2>/dev/null
     pm grant com.realmeparts android.permission.WRITE_SECURE_SETTINGS 2>/dev/null
+
+    # Restore Game Mode if saved as enabled in RealmeParts shared preferences
+    PREF="/data/data/com.realmeparts/shared_prefs/com.realmeparts_preferences.xml"
+    if [ -f "$PREF" ] && grep -q '<boolean name="game" value="true"' "$PREF"; then
+        setprop perf_profile 1
+        /system/bin/perf_profile.sh 1 2>/dev/null
+        echo 1 > /proc/touchpanel/game_switch_enable 2>/dev/null
+        echo 0 > /proc/touchpanel/oppo_tp_limit_enable 2>/dev/null
+        echo 1 > /proc/touchpanel/oppo_tp_direction 2>/dev/null
+    fi
 
     # Re-apply hardware node permissions post boot
     chmod 0666 /proc/touchpanel/game_switch_enable 2>/dev/null
