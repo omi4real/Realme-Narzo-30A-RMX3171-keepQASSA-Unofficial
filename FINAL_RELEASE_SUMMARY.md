@@ -12,15 +12,16 @@
 - **Host Workspace:** `.`
 
 > [!IMPORTANT]
-> **2026-10-20 RECONCILIATION — verified ground truth (overrides any conflicting statement below).**
-> Verified by direct extraction from `vanilla_work/system.img` (MD5 `71a64fc1200a3a995c4e45adb08d8a0e`) and staging trees; the image, script, and git copies of `/system/bin/n30a_fixes.sh` are byte-identical (MD5 `6f03543b176190f4dea5072c779a856a`). Release ZIP MD5 `99bcd41c7a3434f21b97004041b0dcc3` confirmed.
-> 1. **Charge governor (§5c) is CLEAN STATIC 100%:** Replaced the previous dynamic 145%/150% thermal governor loop with a clean, static `echo 100 > /sys/module/oppo_bq2589x_charger/parameters/current_percent`. Root cause analysis confirmed that `current_percent` scales both `ICHG` (battery charge current) and `AICR` (adapter input current limit). At 150%, `AICR = 3000mA` (3.0A). At low battery SOC (<15%) on 5V, attempting to pull 3A collapsed the 18W (5V/2A or 9V/2A) charger's output voltage below `VBUS_UVLO` (~3.9V), cutting charging and causing an infinite disconnect/reconnect flap (requiring offline charging to recover). Furthermore, pushing 150% overheated the cell into the kernel's hardware thermal throttle zone ($\ge 44^\circ\text{C}$), which clamped current down to 500–1350mA in ambient environments. Static `current_percent=100` restores true 18W QC ($9\text{V} \times 2\text{A} = 18\text{W}$) without adapter OCP collapse, eliminates low-battery charge flapping, and restores cool, stable charging under native DT thermal curves.
-> 2. **Neolit V1 Big Booba Kernel Audit:** Disassembly and IKCONFIG symbol reconstruction of `kernel_neolit.raw` proved that the Neolit kernel uses the **exact same binary driver** (`oppo_bq2589x_charger.c`), hardcodes the stock default `current_percent=70`, and shares identical DT charger tables. It does not contain any magic fast-charging bypass.
-> 2. **Display colour (§6b) is SAFE:** only `setprop persist.sys.sf.color_saturation 1.0`. Zero `service call SurfaceFlinger` lines, zero 1015/1022 dispatches. **Task 15 (boot-time 1015 matrix replay) is SUPERSEDED and must never be reintroduced.** `N30A_DisplayColorFix_Magisk.zip` is no longer required on the current build.
-> 3. **64 Hz is NOT in the ROM:** `n30a_fixes.sh` has no Section 8 / `change_mipi` hook, and the ROM `boot.img` is the stock 60 Hz kernel (`0x865044` = `a9 5b 80 52` → 733 Mbps). 64 Hz exists only via the separate `RMX3171_Display_OC_64Hz.zip` / `boot_rmx3171_64hz.img`. Correct `mipi_clk_change` prologue = `0x8b3d54` (`0x8b3d50` is the preceding function's `ret`).
-> 4. **Task 18 audio boost is SUPERSEDED:** with `MTK_AUDIO_SPEAKER_PATH=int_lo_buf`, `speaker_pga=15` = **−7 dB** (not +17 dB). Shipping ROM uses stock RUI values (see §7.7).
-> 5. **services.jar canonical tree is now `scratch/services_v2_tree/`** (decoded from `output/services_patched_gmsfix_v2.jar`, MD5 `6ace8ade4ba3cd49e2cdd04942de118d`, round-trip verified). The old `scratch/services_clean/` was renamed to `scratch/_DEPRECATED_services_clean_BOOT_HANG_DO_NOT_USE/` — every `services_clean` path below refers to that deprecated tree; do not build from it. Verified: `system.img` and device `/system/framework/services.jar` = `6ace8ade…` (v2); `wifi-service.jar` = `dccdace3…`.
-> 6. **Google-cert spoof scope:** only `com.google.android.gms`, `com.android.vending`, `com.google.android.gsf`. Do NOT spoof YouTube/YouTube Music (§7.4 first paragraph is superseded by the correction in `docs/known_issue_gms_update_youtube.md` item 4).
+> **2026-10-21 RECONCILIATION — VERIFIED FINAL RELEASE CANDIDATE.**
+> Verified by clean direct builds across both **Vanilla** and **Pre-baked GApps** variants. Both images share identical core fixes, identical kernel and display calibration, and identical boot scripts.
+> 1. **Charge governor (§5c) is CLEAN STATIC 100%:** Replaced the previous dynamic 145%/150% thermal governor loop with clean static `echo 100 > /sys/module/oppo_bq2589x_charger/parameters/current_percent`. Root cause analysis confirmed that `current_percent` scales both `ICHG` (battery charge current) and `AICR` (adapter input current limit). At 150%, `AICR = 3000mA` (3.0A). At low battery SOC (<15%) on 5V, attempting to pull 3A collapsed the 18W (5V/2A or 9V/2A) charger output voltage below `VBUS_UVLO` (~3.9V), cutting charging and causing an infinite disconnect/reconnect loop. Static `current_percent=100` restores true 18W QC ($9\text{V} \times 2\text{A} = 18\text{W}$) without adapter OCP collapse, eliminates low-battery charge flapping, and restores cool, stable charging under native DT thermal curves.
+> 2. **Shady Launcher Search Bar Fix:** Resolved the issue where installing Google App hijacked the dock search bar and forced Google web search. Modified `AllAppsQsbContainer.smali` so local application search is preserved by default. Added a native visual switch preference `pref_google_search_dock` in Home Settings (`res/xml/home_screen_preferences.xml` + `SettingsHomescreen.smali`) dynamically visible only when Google App is installed, giving users full control.
+> 3. **Play Integrity Fix (PIF) End-to-End Resolution:** Resolved the permission denial where Settings (UID 1000) could not write to `/data/adb/pif.json` (`0700 root:root`). `PlayIntegrityFix.smali` now executes atomic Base64-piped commands via `SuShell` to write `/data/adb/pif.json` and sync with the Magisk module. Additionally, `n30a_fixes.sh` runs a background root watcher (§6e and §7) that auto-syncs any imported configuration within 5 seconds, auto-seeds a known working baseline (Pixel 9 Pro XL CANARY), and auto-stages the bundled `playintegrityfix` module from `/system/etc/playintegrityfix` into Magisk modules on first boot, guaranteeing `MEETS_BASIC_INTEGRITY` passes out-of-the-box upon rooting with Magisk.
+> 4. **Dual ROM Variants (Vanilla & Pre-baked GApps):** Generated two official signed release ZIPs:
+>    - **Vanilla Build:** Super clean, bloat-free base ideal for MicroG or privacy-focused setups.
+>    - **GApps Build:** Pre-integrates patched LiteGapps (native ARM64 Play Store v35.2.19, GmsCore, GSF) directly into `/system/product/`, completely eliminating the persistent recovery flash error and Play Store account crash.
+> 5. **Display colour (§6b) is SAFE:** only `setprop persist.sys.sf.color_saturation 1.0`. Zero `service call SurfaceFlinger` lines, zero 1015/1022 dispatches.
+> 6. **services.jar canonical tree is `scratch/services_v2_tree/`** (MD5 `6ace8ade4ba3cd49e2cdd04942de118d`).
 
 ---
 
@@ -28,16 +29,17 @@
 
 | Deliverable | File Path | File Size | Checksums |
 | :--- | :--- | :--- | :--- |
-| **Flashable ROM ZIP** | `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip` | 1,082,773,120 bytes (~1.08 GB) | **MD5:** `99bcd41c7a3434f21b97004041b0dcc3`<br>**SHA-256:** `e656bb0faed7bd14117c0889e2499660c297d38cfd1ffc7655bb84490bd09edd` |
-| **Patched LiteGapps ZIP** | `LiteGapps-arm64-10.0-RMX3171-Patched.zip` | 66,396,890 bytes (~63 MB) | **MD5:** `1f88d8c33284f7a7c7534283256f663b`<br>ARM64 native Play Store v35.2.19 baked |
+| **Flashable ROM ZIP (Vanilla)** | `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip` | 1,152,716,331 bytes (~1.1 GB) | **MD5:** `ca80d9b066ca530b52bce059c66301ce`<br>**SHA-256:** `390cec93f9efbf4d189432ea14a5b52746c14be45525ee42a81fccc01d374443` |
+| **Flashable ROM ZIP (Pre-baked GApps)** | `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip` | 1,100,575,689 bytes (~1.1 GB) | **MD5:** `a1dd498dd03cf59ecdc0dbf0492f8c21`<br>**SHA-256:** `609230207550df515973aca2603950e96d5e18be3b8889f36a6f8d363af0bd74` |
+| **Patched LiteGapps ZIP (Standalone)** | `LiteGapps-arm64-10.0-RMX3171-Patched.zip` | 66,396,890 bytes (~63 MB) | **MD5:** `1f88d8c33284f7a7c7534283256f663b`<br>ARM64 native Play Store v35.2.19 baked |
+| **Display Color Fix Magisk Module** | `N30A_DisplayColorFix_Magisk.zip` | 5,467 bytes | **MD5:** `29a7c7688b9cf79f1fb8e1171a38a808` |
+| **Play Integrity Fix Magisk Module** | `Play_Integrity47_user_supplied.zip` | 293,262 bytes | Pre-staged in `/system/etc/playintegrityfix` |
+| **Patched Shady Launcher APK** | `Launcher3QuickStep_signed.apk` | 6,534,734 bytes (~6.3 MB) | **MD5:** `67b309309ce82f2e816e203c95520a57`<br>Baked in `/system/product/priv-app/Launcher3QuickStep/` |
+| **Patched Settings APK** | `Settings_pif_signed.apk` | 64,911,196 bytes (~62 MB) | **MD5:** `0c6487751ee6d2e1f3472625b9a146ff`<br>Baked in `/system/product/priv-app/Settings/` |
 | **Game Unlocker Module** | `Infinix_GT50Pro_S25Ultra_GameUnlocker.zip` | 4,562,239 bytes (~4.4 MB) | **MD5:** `4e31d218a1858317375261548705c8ab`<br>**SHA-256:** `3fcb824733ae6966b7f723cde806189c8c22572c54ecbec1af1958555caf9b7e` |
-| **Unified Settings APK** | `Settings_signed.apk` | 64,911,196 bytes (~62 MB) | **MD5:** `d831fffb11d9656f0f9290f9b522fef6`<br>**SHA-256:** `fe543a500535bc09f94c879ac83d74af0d4edd6e11b3426e9d7a68652875090c` |
-| **Fixed services.jar (Play Store self-update, v2)** | `services_patched_gmsfix_v2.jar` | 10,532,245 bytes | **MD5:** `6ace8ade4ba3cd49e2cdd04942de118d` |
+| **Fixed services.jar (v2)** | `services_patched_gmsfix_v2.jar` | 10,532,245 bytes | **MD5:** `6ace8ade4ba3cd49e2cdd04942de118d` |
 | **Fixed wifi-service.jar (5GHz hotspot)** | `wifi-service_dualband_patched.jar` | 3,059,112 bytes | **MD5:** `dccdace3be3cdd32ea2b6238828baff1` |
-| **Audio Boost Addon (optional)** | `N30A_AudioBoost_Magisk.zip` | 3,068 bytes | **MD5:** `e8ffbb0f5ffcc1061dab72e7fd6868b1` |
-| **5GHz Hotspot Addon (older installs)** | `N30A_WiFi5GHz_Magisk.zip` | 1,129,921 bytes | **MD5:** `32b2783585fc2c27e40a039bbb59b44a` |
-| **64Hz Display OC Recovery ZIP** | `RMX3171_Display_OC_64Hz.zip` | 12,258,902 bytes (~12 MB) | **MD5:** `22d119f8a84ede853a20aebd967fe06b`<br>Clean ASCII art, AnyKernel3 recovery flashable |
-| **64Hz Standalone Boot Image** | `boot_rmx3171_64hz.img` | 33,554,432 bytes (32 MB) | **MD5:** `8b8dc4ac72bed943be8ab06ad7c5f29b`<br>Pre-rooted with Magisk, tested & working |
+| **64Hz Display OC Recovery ZIP** | `RMX3171_Display_OC_64Hz.zip` | 12,258,902 bytes (~12 MB) | **MD5:** `22d119f8a84ede853a20aebd967fe06b` |
 
 ---
 

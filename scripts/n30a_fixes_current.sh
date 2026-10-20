@@ -203,11 +203,51 @@ echo 100 > /sys/module/oppo_bq2589x_charger/parameters/current_percent 2>/dev/nu
         done
     ) &
 
-    # 6e. Sync imported pif.json (Settings -> Spoofing -> Play Integrity Fix) to the
-    # PlayIntegrityFix Magisk module so the imported fingerprint is actually applied.
-    if [ -d /data/adb/modules/playintegrityfix ]; then
-        CFG=$(settings get secure spoof_pif_config 2>/dev/null)
-        case "$CFG" in ''|'null') ;; *)
+    # 6e. Play Integrity Fix (PIF): Seed working baseline & auto-sync imported pif.json
+    # (Settings -> KeepQassa Settings -> Spoofing -> Play Integrity Fix)
+    mkdir -p /data/adb/modules 2>/dev/null
+    chmod 0755 /data/adb 2>/dev/null
+    chmod 0755 /data/adb/modules 2>/dev/null
+
+    # Auto-stage PlayIntegrityFix module if bundled in /system/etc/playintegrityfix
+    if [ ! -d /data/adb/modules/playintegrityfix ] && [ -d /system/etc/playintegrityfix ]; then
+        cp -a /system/etc/playintegrityfix /data/adb/modules/playintegrityfix
+        chmod 0755 /data/adb/modules/playintegrityfix
+        chmod 0755 /data/adb/modules/playintegrityfix/*.sh 2>/dev/null
+        chmod 0644 /data/adb/modules/playintegrityfix/module.prop 2>/dev/null
+        chmod 0755 /data/adb/modules/playintegrityfix/zygisk 2>/dev/null
+        chmod 0644 /data/adb/modules/playintegrityfix/zygisk/*.so 2>/dev/null
+    fi
+
+    CFG=$(settings get secure spoof_pif_config 2>/dev/null)
+    case "$CFG" in ''|'null')
+        # Seed default working Pixel 9 Pro XL baseline if pif.json does not exist
+        if [ ! -f /data/adb/pif.json ]; then
+            cat > /data/adb/pif.json << 'PIF_SEED'
+{
+  "BRAND": "google",
+  "DEVICE": "komodo",
+  "MODEL": "Pixel 9 Pro XL",
+  "MANUFACTURER": "Google",
+  "FINGERPRINT": "google/komodo_beta/komodo:CANARY/ZP11.260417.009/15372612:user/release-keys",
+  "SECURITY_PATCH": "2026-04-05",
+  "DEVICE_INITIAL_SDK_INT": "34"
+}
+PIF_SEED
+            chmod 0644 /data/adb/pif.json
+            settings put secure spoof_pif_config "$(cat /data/adb/pif.json)" 2>/dev/null
+            CFG=$(cat /data/adb/pif.json 2>/dev/null)
+        fi
+        ;;
+    esac
+
+    # Sync CFG to /data/adb/pif.json and Magisk module if available
+    case "$CFG" in ''|'null') ;; *)
+        printf '%s\n' "$CFG" > /data/adb/pif.json
+        chmod 0644 /data/adb/pif.json
+        if [ -d /data/adb/modules/playintegrityfix ]; then
+            cp /data/adb/pif.json /data/adb/modules/playintegrityfix/pif.json 2>/dev/null
+            chmod 0644 /data/adb/modules/playintegrityfix/pif.json 2>/dev/null
             pifv() { printf '%s' "$CFG" | tr -d '\n' | sed -n 's/.*"'"$1"'"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p' | sed 's|\\/|/|g'; }
             FP=$(pifv FINGERPRINT)
             if [ -n "$FP" ]; then
@@ -243,16 +283,39 @@ echo 100 > /sys/module/oppo_bq2589x_charger/parameters/current_percent 2>/dev/nu
                     echo "verboseLogs=0"
                 } > "$OUT"
                 chmod 0644 "$OUT"
-                am force-stop com.google.android.gms 2>/dev/null
             fi
-            ;;
-        esac
-    fi
+            am force-stop com.google.android.gms 2>/dev/null
+            am force-stop com.google.android.gms.unstable 2>/dev/null
+        fi
+        ;;
+    esac
 
-    # 7. Real-time Hardware FPS Monitor Loop
+    # 7. Real-time Hardware FPS Monitor & Dynamic PIF Sync Loop
     touch /dev/realme_fps 2>/dev/null
     chmod 0666 /dev/realme_fps 2>/dev/null
     while true; do
+        # Dynamic PIF sync daemon (every ~5 seconds)
+        PIF_SYNC_TICK=$(( (${PIF_SYNC_TICK:-0} + 1) % 5 ))
+        if [ "$PIF_SYNC_TICK" -eq 0 ]; then
+            P_CFG=$(settings get secure spoof_pif_config 2>/dev/null)
+            case "$P_CFG" in ''|'null') ;; *)
+                if [ ! -f /data/adb/pif.json ] || [ "$(cat /data/adb/pif.json 2>/dev/null)" != "$P_CFG" ]; then
+                    mkdir -p /data/adb 2>/dev/null
+                    chmod 0755 /data/adb 2>/dev/null
+                    printf '%s\n' "$P_CFG" > /data/adb/pif.json
+                    chmod 0644 /data/adb/pif.json
+                    if [ -d /data/adb/modules/playintegrityfix ]; then
+                        cp /data/adb/pif.json /data/adb/modules/playintegrityfix/pif.json 2>/dev/null
+                        chmod 0644 /data/adb/modules/playintegrityfix/pif.json 2>/dev/null
+                    fi
+                    am force-stop com.google.android.gms 2>/dev/null
+                    am force-stop com.google.android.gms.unstable 2>/dev/null
+                    am force-stop com.android.vending 2>/dev/null
+                fi
+                ;;
+            esac
+        fi
+
         fps=$(cat /sys/kernel/debug/fpsgo/fstb/fpsgo_status 2>/dev/null | awk '$3 ~ /^[0-9]+$/ && $3 > 0 {print $3; exit}')
         if [ -n "$fps" ]; then
             echo "$fps" > /dev/realme_fps
