@@ -11,7 +11,7 @@
 
 A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo 30A (`RMX3171`)**. Yes, Android 10 in the big '26 (**#keepQalive**), because modern OS bloat wasn't built for this hardware, and having instant app launches with two-day 6000mAh battery life beats chasing Android version numbers.
 
-[**Downloads**](#downloads) • [**Device Specs**](#device-specs) • [**Screenshots**](#screenshots) • [**Flashing Guide**](#flashing-instructions) • [**What's Working**](#system-status) • [**Credits**](#credits)
+[**Downloads**](#downloads) • [**Highlights**](#highlights) • [**Device Specs**](#device-specs) • [**Screenshots**](#screenshots) • [**Flashing Guide**](#flashing-instructions) • [**What's Working**](#system-status) • [**Credits**](#credits)
 
 </div>
 
@@ -111,16 +111,16 @@ A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo
 </table>
 
 ### RealmeParts & Hardware Diagnostics
-<table>
+<table width="100%">
   <tr>
-    <th width="180" align="center">Realme Settings Hub</th>
-    <th width="180" align="center">FPS Meter Active</th>
-    <th width="180" align="center">Real-Time FPS on Homescreen</th>
+    <th width="33.33%" align="center">Realme Settings Hub</th>
+    <th width="33.33%" align="center">FPS Meter Active</th>
+    <th width="33.33%" align="center">Real-Time FPS on Homescreen</th>
   </tr>
   <tr>
-    <td width="180" align="center"><img src="./screenshots/11_realme_settings.png" width="180" alt="Realme Settings Hub" /></td>
-    <td width="180" align="center"><img src="./screenshots/12_fps_overlay_active.png" width="180" alt="Realme Settings FPS Toggle Active" /></td>
-    <td width="180" align="center"><img src="./screenshots/13_homescreen_fps_overlay.png" width="180" alt="Real-Time FPS Meter on Homescreen" /></td>
+    <td width="33.33%" align="center"><img src="./screenshots/11_realme_settings.png" width="180" alt="Realme Settings Hub" /></td>
+    <td width="33.33%" align="center"><img src="./screenshots/12_fps_overlay_active.png" width="180" alt="Realme Settings FPS Toggle Active" /></td>
+    <td width="33.33%" align="center"><img src="./screenshots/13_homescreen_fps_overlay.png" width="180" alt="Real-Time FPS Meter on Homescreen" /></td>
   </tr>
 </table>
 
@@ -139,9 +139,9 @@ All flashable binaries and packages are hosted on the **[Releases](https://githu
 
 > [!NOTE]
 > ### 💡 Which ROM Package Should You Choose?
-> * **Pre-baked GApps ROM (Strongly Recommended for Google Users):** Due to Android 10 system-as-root dynamic partition constraints, split-APK signature verifications, and Play Store permission reconciliation, flashing third-party GApps zip packages from custom recovery often triggers Play Store permission crashes or bootloops. If you intend to use Google Play Store, Gmail, Google Photos, or Google account sync, flash the **Pre-baked GApps ROM** — Google Services are pre-integrated directly into `/system/product/priv-app/` with verified SELinux contexts and permissions for a 100% stable out-of-the-box experience.
+> * **Pre-baked GApps ROM (Strongly Recommended for Google Users):** Due to Android 10 System-as-Root (SAR) fixed physical partition sizing and read-only mount constraints, split-APK signature verifications, and Play Store permission reconciliation, flashing third-party GApps zip packages from custom recovery often triggers Play Store permission crashes or bootloops. If you intend to use Google Play Store, Gmail, Google Photos, or Google account sync, flash the **Pre-baked GApps ROM** — Google Services are pre-integrated directly into `/system/product/priv-app/` with verified SELinux contexts and permissions for a 100% stable out-of-the-box experience.
 > * **Vanilla ROM (Ideal for Clean / MicroG / FOSS Setups):** If you prefer a completely de-Googled, bloat-free system, or use MicroG / Aurora Store / F-Droid, flash the **Vanilla ROM**. It contains zero Google telemetry or background services, maximizing battery longevity and RAM availability. *(Note: Flashing standard external OpenGApps or NikGApps over Vanilla is NOT recommended due to recovery-level permission conflicts).*
-> * **Patched LiteGapps Package (Verified Fallback):** For users who initially flashed Vanilla and subsequently decide to install Google Play Services without wiping their system, we provide our pre-patched `LiteGapps-arm64-10.0-RMX3171-Patched.zip`. Its installer script has been specifically adapted to mount our dynamic partitions cleanly and configure Play Store permissions without breaking integrity.
+> * **Patched LiteGapps Package (Verified Fallback):** For users who initially flashed Vanilla and subsequently decide to install Google Play Services without wiping their system, we provide our pre-patched `LiteGapps-arm64-10.0-RMX3171-Patched.zip`. Its installer script has been specifically adapted to mount our SAR `/system` and `/product` partitions cleanly and configure Play Store permissions without breaking integrity.
 
 ---
 
@@ -149,6 +149,7 @@ All flashable binaries and packages are hosted on the **[Releases](https://githu
 ## 🛠️ Flashing Instructions
 
 ### Prerequisites
+* **⚠️ Mandatory Firmware Base:** Device **MUST** be on **Stock Realme UI 1.0 (Android 10)** firmware (e.g. `A.17`, `A.19`, or `A.21`) before flashing PBRP and this ROM. *(If you are currently running Realme UI 2.0 / Android 11, you must roll back to Stock Realme UI 1.0 first, or you will encounter recovery fastboot loops or broken touchscreen!).*
 * Unlocked bootloader on **Realme Narzo 30A (`RMX3171`)**.
 * Custom Recovery: **[Pitch Black Recovery Project (PBRP)](https://t.me/rmx3171important/406)** based on and for **Realme UI 1.0** *(Mandatory: our ROM is based on RUI 1.0)*.
 * Full backup of personal data.
@@ -156,10 +157,10 @@ All flashable binaries and packages are hosted on the **[Releases](https://githu
 
 ### Installation Steps
 1. **Reboot to Recovery Mode** (PBRP for Realme UI 1.0).
-2. **Flash the ROM ZIP:**
+2. **Flash the ROM ZIP directly:** *(Do NOT manually wipe system or vendor partitions in recovery; the ROM installer flashes the raw block image cleanly!)*
    - **For Google Services / Play Store (Recommended):** Flash `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip`.
    - **For Clean Experience / MicroG:** Flash `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`.
-3. **Flash Magisk (Optional, Recommended):** Flash Magisk (v30.7 or latest) for root, modules, and Google Play Integrity pass.
+3. **Flash Magisk (Optional):** Flash Magisk (v30.7 or latest) if you want root access or Magisk modules. *(Note: Our built-in device spoofing already handles Google Play Integrity out of the box without needing Magisk!).*
 4. **Format Data (MANDATORY):** Go to **Wipe** → **Format Data** → type `yes`. *(Do NOT skip this: format data is required to reset Android encryption and prevent bootloops!).*
 5. **Reboot to System** & enjoy silky-smooth Android 10 performance!
 
