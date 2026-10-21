@@ -88,8 +88,9 @@ All flashable binaries, recovery packages, and companion addons are hosted on th
 
 | Deliverable | File & MD5 Checksum |
 | :--- | :--- |
-| **Base ROM (Custom ROM Port)**<br><sub>Full flashable Android 10 OS (~1.07 GB)<br>*(RealmeParts, Unified Settings, 5GHz Hotspot & Color Fixes are pre-baked!)*</sub> | **File:** `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`<br>**MD5:** `358b6c59918f7a2a2167317d3d5be199` |
-| **Google Apps (LiteGapps)**<br><sub>Patched ARM64 native Play Services & Store (~64 MB)</sub> | **File:** `LiteGapps-arm64-10.0-RMX3171-Patched.zip`<br>**MD5:** `1f88d8c33284f7a7c7534283256f663b` |
+| **Pre-baked GApps ROM (Recommended)**<br><sub>Full flashable Android 10 OS (~1.10 GB)<br>*(Google Play Store & GMS pre-integrated into system, zero recovery flash issues!)*</sub> | **File:** `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip`<br>**MD5:** `4bd9e0ad32461f5e3294b012d3575dc4` |
+| **Vanilla ROM (Clean / MicroG)**<br><sub>Full flashable Android 10 OS (~1.09 GB)<br>*(Super clean, bloat-free base. Ideal for MicroG or privacy setups)*</sub> | **File:** `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`<br>**MD5:** `733dc899d1d8ccef5ddcb308ac77d6a9` |
+| **Google Apps (Patched LiteGapps)**<br><sub>Standalone fallback ARM64 native Play Services & Store (~64 MB)</sub> | **File:** `LiteGapps-arm64-10.0-RMX3171-Patched.zip`<br>**MD5:** `1f88d8c33284f7a7c7534283256f663b` |
 | **Game Unlocker Addon (Optional)**<br><sub>Magisk high-FPS flagship spoof module (~4.4 MB)</sub> | **File:** [`Infinix_GT50Pro_S25Ultra_GameUnlocker.zip`](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons/releases)<br>**MD5:** `4e31d218a1858317375261548705c8ab`<br><sub>Source: [Magisk Addons Repo](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons)</sub> |
 | **Audio Boost Addon (Optional)**<br><sub>Loudspeaker output boost Magisk module (~3 KB)</sub> | **File:** [`N30A_AudioBoost_Magisk.zip`](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons/releases)<br>**MD5:** `e8ffbb0f5ffcc1061dab72e7fd6868b1`<br><sub>Source: [Magisk Addons Repo](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons)</sub> |
 
@@ -109,11 +110,12 @@ All flashable binaries, recovery packages, and companion addons are hosted on th
 
 ### Installation Steps
 1. **Reboot to Recovery Mode** (PBRP for Realme UI 1.0).
-2. **Flash the ROM ZIP:** Flash `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`.
-3. **Flash GApps (Optional):** Flash `LiteGapps-arm64-10.0-RMX3171-Patched.zip` *(Skip if you prefer pure Vanilla; flash if you need Play Store & Google services)*.
-4. **Flash Magisk (Optional, Recommended):** Flash Magisk (v30.7 or latest) for root, modules, and extra addons.
-5. **Format Data (MANDATORY):** Go to **Wipe** → **Format Data** → type `yes`. *(Do NOT skip this: format data is required to reset Android encryption and prevent bootloops!).*
-6. **Reboot to System** & enjoy silky-smooth Android 10 performance!
+2. **Flash the ROM ZIP:**
+   - **For Google Services / Play Store (Recommended):** Flash `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip`.
+   - **For Clean Experience / MicroG:** Flash `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`.
+3. **Flash Magisk (Optional, Recommended):** Flash Magisk (v30.7 or latest) for root, modules, and Google Play Integrity pass.
+4. **Format Data (MANDATORY):** Go to **Wipe** → **Format Data** → type `yes`. *(Do NOT skip this: format data is required to reset Android encryption and prevent bootloops!).*
+5. **Reboot to System** & enjoy silky-smooth Android 10 performance!
 
 ---
 
