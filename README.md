@@ -75,9 +75,15 @@ A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo
 <a id="screenshots"></a>
 ## 📸 Screenshots & UI Preview
 
-| About Phone & Hardware | Homescreen & Launcher | Built-in Play Integrity & Spoofing | LiveDisplay Color HSIC | RealmeParts & Real-Time FPS |
+### Core System & Interface
+| Homescreen (Shady Launcher) | App Drawer | Settings Main | About Phone & Hardware | Quick Settings Shade |
 | :---: | :---: | :---: | :---: | :---: |
-| <img src="./screenshots/about_phone.png" width="180" alt="About Phone & Hardware" /> | <img src="./screenshots/lawnchair_home2.png" width="180" alt="Homescreen & Launcher" /> | <img src="./screenshots/pif_spoof.png" width="180" alt="Built-in Play Integrity & Spoofing" /> | <img src="./screenshots/livedisplay.png" width="180" alt="LiveDisplay Color HSIC" /> | <img src="./screenshots/fps_live2.png" width="180" alt="RealmeParts FPS Overlay" /> |
+| <img src="./screenshots/01_homescreen.png" width="180" alt="Homescreen (Shady Launcher)" /> | <img src="./screenshots/02_app_drawer.png" width="180" alt="App Drawer" /> | <img src="./screenshots/03_settings_main.png" width="180" alt="Settings Main" /> | <img src="./screenshots/04_about_phone.png" width="180" alt="About Phone & Hardware" /> | <img src="./screenshots/10_quick_settings.png" width="180" alt="Quick Settings Shade" /> |
+
+### Customizations & Special Features
+| #keepQASSA Hub | Spoofing Suite | Custom Play Integrity Fix | LiveDisplay Picture Adjustment | Launcher Search Bar Switch |
+| :---: | :---: | :---: | :---: | :---: |
+| <img src="./screenshots/05_keepqassa_menu.png" width="180" alt="#keepQASSA Features Hub" /> | <img src="./screenshots/06_spoofing_menu.png" width="180" alt="Device Spoofing Suite" /> | <img src="./screenshots/07_play_integrity_fix.png" width="180" alt="Custom Play Integrity Fix (pif.json)" /> | <img src="./screenshots/08_livedisplay_picture_adjustment.png" width="180" alt="LiveDisplay Color HSIC Calibration" /> | <img src="./screenshots/09_launcher_search_toggle.png" width="180" alt="Shady Launcher Search Toggle" /> |
 
 ---
 
