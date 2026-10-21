@@ -11,7 +11,7 @@
 
 A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo 30A (`RMX3171`)**. Yes, Android 10 in the big '26 (**#keepQalive**), because modern OS bloat wasn't built for this hardware, and having instant app launches with two-day 6000mAh battery life beats chasing Android version numbers.
 
-[**Downloads**](#downloads) • [**Screenshots**](#screenshots) • [**Flashing Guide**](#flashing-instructions) • [**Device Specs**](#device-specs) • [**What's Working**](#system-status) • [**Credits**](#credits) • [**Technical Bible**](./FINAL_RELEASE_SUMMARY.md)
+[**Downloads**](#downloads) • [**Device Specs**](#device-specs) • [**Screenshots**](#screenshots) • [**Flashing Guide**](#flashing-instructions) • [**What's Working**](#system-status) • [**Credits**](#credits)
 
 </div>
 
@@ -65,10 +65,9 @@ A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo
 * **🛡️ Built-in Play Integrity Fix & Device Spoofing (`Settings -> Qassa -> Miscellaneous -> Spoof`):** Integrated spoofing suite baked directly into Settings, featuring Play Integrity Fix toggles, Google Photos unlimited original-quality backup, device fingerprint spoofing, and YouTube GMS spoofing out of the box.
 * **🎨 LiveDisplay Picture Adjustment:** Full hardware RGB calibration and saturation sliders enabled in Settings without triggering MediaTek SurfaceFlinger hardware composer lockups.
 * **📶 Dual-Band 5 GHz Hotspot (`wifi-service.jar`):** Overrode MediaTek stock constraints to allow full 5 GHz Wi-Fi hotspot broadcasting.
-* **🔋 Dynamic Thermal-Charging Governor (`scripts/n30a_fixes_current.sh`):** Real-time background thermal daemon scaling charging speeds safely up to 150% below 38 °C and tapering down dynamically as thermals increase.
-* **🚀 Overclockable Display Refresh Rate Tool:** Custom kernel MIPI DSI clock patcher tool that lets adventurous users overclock their display refresh rate beyond 60 Hz. Tooling and AnyKernel3 generators are hosted in the standalone [**Display OC Toolkit**](https://github.com/omi4real/Realme-Narzo-30A-Display-OC-Toolkit) repository *(⚠️ Experimental / Panel Lottery: Replacement panels vary widely; use at your own risk!)*.
+* **🔋 Fast Charging with Hardware Thermal Management (QC/PD up to 18W):** Native fast charging governed by the onboard Texas Instruments BQ2589x controller, delivering up to 9V @ 2A (18W) with dynamic Li-ion constant-voltage thermal tapering for cool operation and maximum battery lifespan.
+* **🏠 Customized Shady Launcher with Google Search Switch:** Seamless toggle built into Launcher Home Settings, allowing instant switching between offline app search and Google App search.
 * **⚙️ RealmeParts Hardware Suite:** Pre-baked device features app providing real-time FPS overlay, USB-OTG quick toggle, and hardware performance switches.
-* **🔊 Extra Flashable Addons (Audio Boost & Game Unlocker):** Modular companion addons including loudspeaker acoustic gain boost (`N30A_AudioBoost_Magisk.zip`) and dynamic 90/120 FPS flagship game spoofing (`Infinix_GT50Pro_S25Ultra_GameUnlocker.zip`), hosted in the [**Magisk Addons**](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons) repository.
 
 ---
 
@@ -76,37 +75,73 @@ A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo
 ## 📸 Screenshots & UI Preview
 
 ### Core System & Interface
-| Homescreen (Shady Launcher) | App Drawer | Settings Main | About Phone & Hardware | Quick Settings Shade |
-| :---: | :---: | :---: | :---: | :---: |
-| <img src="./screenshots/01_homescreen.png" width="180" alt="Homescreen (Shady Launcher)" /> | <img src="./screenshots/02_app_drawer.png" width="180" alt="App Drawer" /> | <img src="./screenshots/03_settings_main.png" width="180" alt="Settings Main" /> | <img src="./screenshots/04_about_phone.png" width="180" alt="About Phone & Hardware" /> | <img src="./screenshots/10_quick_settings.png" width="180" alt="Quick Settings Shade" /> |
+<table>
+  <tr>
+    <th width="20%" align="center">Homescreen</th>
+    <th width="20%" align="center">App Drawer</th>
+    <th width="20%" align="center">Settings Main</th>
+    <th width="20%" align="center">About Phone</th>
+    <th width="20%" align="center">Quick Settings</th>
+  </tr>
+  <tr>
+    <td width="20%" align="center"><img src="./screenshots/01_homescreen.png" width="180" alt="Homescreen (Shady Launcher)" /></td>
+    <td width="20%" align="center"><img src="./screenshots/02_app_drawer.png" width="180" alt="App Drawer" /></td>
+    <td width="20%" align="center"><img src="./screenshots/03_settings_main.png" width="180" alt="Settings Main" /></td>
+    <td width="20%" align="center"><img src="./screenshots/04_about_phone.png" width="180" alt="About Phone & Hardware" /></td>
+    <td width="20%" align="center"><img src="./screenshots/10_quick_settings.png" width="180" alt="Quick Settings Shade" /></td>
+  </tr>
+</table>
 
 ### Customizations & Special Features
-| #keepQASSA Hub | Spoofing Suite | Custom Play Integrity Fix | LiveDisplay Picture Adjustment | Launcher Search Bar Switch |
-| :---: | :---: | :---: | :---: | :---: |
-| <img src="./screenshots/05_keepqassa_menu.png" width="180" alt="#keepQASSA Features Hub" /> | <img src="./screenshots/06_spoofing_menu.png" width="180" alt="Device Spoofing Suite" /> | <img src="./screenshots/07_play_integrity_fix.png" width="180" alt="Custom Play Integrity Fix (pif.json)" /> | <img src="./screenshots/08_livedisplay_picture_adjustment.png" width="180" alt="LiveDisplay Color HSIC Calibration" /> | <img src="./screenshots/09_launcher_search_toggle.png" width="180" alt="Shady Launcher Search Toggle" /> |
+<table>
+  <tr>
+    <th width="20%" align="center">#keepQASSA Hub</th>
+    <th width="20%" align="center">Spoofing Suite</th>
+    <th width="20%" align="center">Play Integrity Fix</th>
+    <th width="20%" align="center">LiveDisplay Color</th>
+    <th width="20%" align="center">Search Bar Toggle</th>
+  </tr>
+  <tr>
+    <td width="20%" align="center"><img src="./screenshots/05_keepqassa_menu.png" width="180" alt="#keepQASSA Hub" /></td>
+    <td width="20%" align="center"><img src="./screenshots/06_spoofing_menu.png" width="180" alt="Spoofing Suite" /></td>
+    <td width="20%" align="center"><img src="./screenshots/07_play_integrity_fix.png" width="180" alt="Custom Play Integrity Fix" /></td>
+    <td width="20%" align="center"><img src="./screenshots/08_livedisplay_picture_adjustment.png" width="180" alt="LiveDisplay Color Calibration" /></td>
+    <td width="20%" align="center"><img src="./screenshots/09_launcher_search_toggle.png" width="180" alt="Launcher Search Toggle" /></td>
+  </tr>
+</table>
 
 ### RealmeParts & Hardware Diagnostics
-| Realme Settings Hub | FPS Meter Active | Real-Time FPS on Homescreen |
-| :---: | :---: | :---: |
-| <img src="./screenshots/11_realme_settings.png" width="180" alt="Realme Settings Hub" /> | <img src="./screenshots/12_fps_overlay_active.png" width="180" alt="Realme Settings FPS Toggle Active" /> | <img src="./screenshots/13_homescreen_fps_overlay.png" width="180" alt="Real-Time FPS Meter on Homescreen" /> |
+<table>
+  <tr>
+    <th width="180" align="center">Realme Settings Hub</th>
+    <th width="180" align="center">FPS Meter Active</th>
+    <th width="180" align="center">Real-Time FPS on Homescreen</th>
+  </tr>
+  <tr>
+    <td width="180" align="center"><img src="./screenshots/11_realme_settings.png" width="180" alt="Realme Settings Hub" /></td>
+    <td width="180" align="center"><img src="./screenshots/12_fps_overlay_active.png" width="180" alt="Realme Settings FPS Toggle Active" /></td>
+    <td width="180" align="center"><img src="./screenshots/13_homescreen_fps_overlay.png" width="180" alt="Real-Time FPS Meter on Homescreen" /></td>
+  </tr>
+</table>
 
 ---
 
 <a id="downloads"></a>
 ## 📦 Downloads & Checksums
 
-All flashable binaries, recovery packages, and companion addons are hosted on the **[Releases](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases)** page:
+All flashable binaries and packages are hosted on the **[Releases](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases)** page:
 
 | Deliverable | File & MD5 Checksum |
 | :--- | :--- |
 | **Pre-baked GApps ROM (Recommended)**<br><sub>Full flashable Android 10 OS (~1.10 GB)<br>*(Google Play Store & GMS pre-integrated into system, zero recovery flash issues!)*</sub> | **File:** `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip`<br>**MD5:** `4bd9e0ad32461f5e3294b012d3575dc4` |
 | **Vanilla ROM (Clean / MicroG)**<br><sub>Full flashable Android 10 OS (~1.09 GB)<br>*(Super clean, bloat-free base. Ideal for MicroG or privacy setups)*</sub> | **File:** `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`<br>**MD5:** `733dc899d1d8ccef5ddcb308ac77d6a9` |
 | **Google Apps (Patched LiteGapps)**<br><sub>Standalone fallback ARM64 native Play Services & Store (~64 MB)</sub> | **File:** `LiteGapps-arm64-10.0-RMX3171-Patched.zip`<br>**MD5:** `1f88d8c33284f7a7c7534283256f663b` |
-| **Game Unlocker Addon (Optional)**<br><sub>Magisk high-FPS flagship spoof module (~4.4 MB)</sub> | **File:** [`Infinix_GT50Pro_S25Ultra_GameUnlocker.zip`](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons/releases)<br>**MD5:** `4e31d218a1858317375261548705c8ab`<br><sub>Source: [Magisk Addons Repo](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons)</sub> |
-| **Audio Boost Addon (Optional)**<br><sub>Loudspeaker output boost Magisk module (~3 KB)</sub> | **File:** [`N30A_AudioBoost_Magisk.zip`](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons/releases)<br>**MD5:** `e8ffbb0f5ffcc1061dab72e7fd6868b1`<br><sub>Source: [Magisk Addons Repo](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons)</sub> |
 
 > [!NOTE]
-> **Display Overclocking:** Pre-built display overclock packages are intentionally omitted from public downloads because panel hardware tolerances vary significantly across replacement or factory LCDs. If you wish to build a customized display overclock package tuned for your own panel, use our standalone toolkit: [**Realme-Narzo-30A-Display-OC-Toolkit**](https://github.com/omi4real/Realme-Narzo-30A-Display-OC-Toolkit).
+> ### 💡 Which ROM Package Should You Choose?
+> * **Pre-baked GApps ROM (Strongly Recommended for Google Users):** Due to Android 10 system-as-root dynamic partition constraints, split-APK signature verifications, and Play Store permission reconciliation, flashing third-party GApps zip packages from custom recovery often triggers Play Store permission crashes or bootloops. If you intend to use Google Play Store, Gmail, Google Photos, or Google account sync, flash the **Pre-baked GApps ROM** — Google Services are pre-integrated directly into `/system/product/priv-app/` with verified SELinux contexts and permissions for a 100% stable out-of-the-box experience.
+> * **Vanilla ROM (Ideal for Clean / MicroG / FOSS Setups):** If you prefer a completely de-Googled, bloat-free system, or use MicroG / Aurora Store / F-Droid, flash the **Vanilla ROM**. It contains zero Google telemetry or background services, maximizing battery longevity and RAM availability. *(Note: Flashing standard external OpenGApps or NikGApps over Vanilla is NOT recommended due to recovery-level permission conflicts).*
+> * **Patched LiteGapps Package (Verified Fallback):** For users who initially flashed Vanilla and subsequently decide to install Google Play Services without wiping their system, we provide our pre-patched `LiteGapps-arm64-10.0-RMX3171-Patched.zip`. Its installer script has been specifically adapted to mount our dynamic partitions cleanly and configure Play Store permissions without breaking integrity.
 
 ---
 
@@ -135,13 +170,8 @@ All flashable binaries, recovery packages, and companion addons are hosted on th
 ```text
 Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/
 ├── README.md                      # Project documentation & release overview
-├── FINAL_RELEASE_SUMMARY.md       # Master reverse-engineering journal
 ├── LICENSE                        # Apache License 2.0 open-source license
-├── scripts/                       # Charging daemon & system initialization tools
-│   ├── n30a_fixes_current.sh      # Thermal charging daemon & system initialization
-│   ├── rmx3171_charge_diag.sh     # Charging diagnostics & battery metrics tool
-│   └── rmx3171.tweaks.rc          # Vendor init tweaks for Helio G85
-└── screenshots/                   # Device verification & test screenshots
+└── screenshots/                   # Device verification & showcase screenshots
 ```
 
 ---
@@ -153,16 +183,8 @@ Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/
 * **[@szyryjn](https://t.me/szyryjn) on Telegram:** For the base `RMX2020` ROM build (`qassa_Sisu-v2.4.s-RMX2020-20250617-0312-GApps-sign.zip`), from which this Narzo 30A port was created.
 * **[@sarthakroy](https://github.com/sarthakroy2002) & [@koushikdey](https://github.com/koushikdey):** Special thanks for the device trees and bringup groundwork.
 * **[Realme C3 / Narzo 10A OSS Vendor Team](https://telegra.ph/Realme-C3Narzo-10A-OSS-Vendor-Credits-08-30):** For the vendor blobs, kernel fixes, and OSS tree components (see full vendor credits [here](https://telegra.ph/Realme-C3Narzo-10A-OSS-Vendor-Credits-08-30)).
-* **[Pitch Black Recovery Project (PBRP)](https://t.me/rmx3171important/406):** For the Realme UI 1.0 custom recovery tree.
+* **Pitch Black Recovery Project (PBRP) Team:** For the Realme UI 1.0 custom recovery tree and community recovery support.
 * **MediaTek & Realme Moon Community:** For testing, toolchains, and feedback.
-
----
-
-<a id="technical-docs"></a>
-## 📖 Deep Technical Documentation
-
-> [!NOTE]
-> For the complete reverse-engineering journal detailing the MediaTek SurfaceFlinger IPC fixes, smali register layouts, and GMS signature reconciliation, read [**`FINAL_RELEASE_SUMMARY.md`**](./FINAL_RELEASE_SUMMARY.md).
 
 ---
 
