@@ -85,6 +85,11 @@ A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo
 | :---: | :---: | :---: | :---: | :---: |
 | <img src="./screenshots/05_keepqassa_menu.png" width="180" alt="#keepQASSA Features Hub" /> | <img src="./screenshots/06_spoofing_menu.png" width="180" alt="Device Spoofing Suite" /> | <img src="./screenshots/07_play_integrity_fix.png" width="180" alt="Custom Play Integrity Fix (pif.json)" /> | <img src="./screenshots/08_livedisplay_picture_adjustment.png" width="180" alt="LiveDisplay Color HSIC Calibration" /> | <img src="./screenshots/09_launcher_search_toggle.png" width="180" alt="Shady Launcher Search Toggle" /> |
 
+### RealmeParts & Hardware Diagnostics
+| Realme Settings Hub | FPS Meter Active | Real-Time FPS on Homescreen |
+| :---: | :---: | :---: |
+| <img src="./screenshots/11_realme_settings.png" width="180" alt="Realme Settings Hub" /> | <img src="./screenshots/12_fps_overlay_active.png" width="180" alt="Realme Settings FPS Toggle Active" /> | <img src="./screenshots/13_homescreen_fps_overlay.png" width="180" alt="Real-Time FPS Meter on Homescreen" /> |
+
 ---
 
 <a id="downloads"></a>
