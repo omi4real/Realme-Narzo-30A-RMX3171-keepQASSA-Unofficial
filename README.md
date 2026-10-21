@@ -129,13 +129,13 @@ A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo
 <a id="downloads"></a>
 ## 📦 Downloads & Checksums
 
-All flashable binaries and packages are hosted on the **[Releases](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases)** page:
+All flashable binaries and packages are hosted on the **[Releases (v2.4.s-RMX3171)](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/tag/v2.4.s-RMX3171)** page:
 
 | Deliverable | File & MD5 Checksum |
 | :--- | :--- |
-| **Pre-baked GApps ROM (Recommended)**<br><sub>Full flashable Android 10 OS (~1.10 GB)<br>*(Google Play Store & GMS pre-integrated into system, zero recovery flash issues!)*</sub> | **File:** `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip`<br>**MD5:** `4bd9e0ad32461f5e3294b012d3575dc4` |
-| **Vanilla ROM (Clean / MicroG)**<br><sub>Full flashable Android 10 OS (~1.09 GB)<br>*(Super clean, bloat-free base. Ideal for MicroG or privacy setups)*</sub> | **File:** `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`<br>**MD5:** `733dc899d1d8ccef5ddcb308ac77d6a9` |
-| **Google Apps (Patched LiteGapps)**<br><sub>Standalone fallback ARM64 native Play Services & Store (~64 MB)</sub> | **File:** `LiteGapps-arm64-10.0-RMX3171-Patched.zip`<br>**MD5:** `1f88d8c33284f7a7c7534283256f663b` |
+| **Pre-baked GApps ROM (Recommended)**<br><sub>Full flashable Android 10 OS (~1.10 GB)<br>*(Google Play Store & GMS pre-integrated into system, zero recovery flash issues!)*</sub> | **File:** [`qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.4.s-RMX3171/qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip)<br>**MD5:** `4bd9e0ad32461f5e3294b012d3575dc4` |
+| **Vanilla ROM (Clean / MicroG)**<br><sub>Full flashable Android 10 OS (~1.09 GB)<br>*(Super clean, bloat-free base. Ideal for MicroG or privacy setups)*</sub> | **File:** [`qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.4.s-RMX3171/qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip)<br>**MD5:** `733dc899d1d8ccef5ddcb308ac77d6a9` |
+| **Google Apps (Patched LiteGapps)**<br><sub>Standalone fallback ARM64 native Play Services & Store (~64 MB)</sub> | **File:** [`LiteGapps-arm64-10.0-RMX3171-Patched.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.4.s-RMX3171/LiteGapps-arm64-10.0-RMX3171-Patched.zip)<br>**MD5:** `1f88d8c33284f7a7c7534283256f663b` |
 
 > [!NOTE]
 > ### 💡 Which ROM Package Should You Choose?
