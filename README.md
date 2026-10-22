@@ -68,7 +68,6 @@ A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo
 * **🔋 Fast Charging with Hardware Thermal Management (QC/PD up to 18W):** Native fast charging governed by the onboard Texas Instruments BQ2589x controller, delivering up to 9V @ 2A (18W) with dynamic Li-ion constant-voltage thermal tapering for cool operation and maximum battery lifespan.
 * **🏠 Customized Shady Launcher with Google Search Switch:** Seamless toggle built into Launcher Home Settings, allowing instant switching between offline app search and Google App search.
 * **⚙️ RealmeParts Hardware Suite:** Pre-baked device features app providing real-time FPS overlay, USB-OTG quick toggle, and hardware performance switches.
-* **🔊 Loudspeaker & Earpiece Acoustic Boost Addon:** Hardware-calibrated MediaTek ALSA analog gain enhancement (+4 dB loudspeaker, +6 dB earpiece) available as a tested, non-destructive flashable module via our companion [Magisk Addons Suite](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons).
 
 ---
 
@@ -137,7 +136,6 @@ All flashable binaries and packages are hosted on the **[Releases (v2.4.s-RMX317
 | **Pre-baked GApps ROM (Recommended)**<br><sub>Full flashable Android 10 OS (~1.10 GB)<br>*(Google Play Store & GMS pre-integrated into system, zero recovery flash issues!)*</sub> | **File:** [`qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.4.s-RMX3171/qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip)<br>**MD5:** `4bd9e0ad32461f5e3294b012d3575dc4` |
 | **Vanilla ROM (Clean / MicroG)**<br><sub>Full flashable Android 10 OS (~1.09 GB)<br>*(Super clean, bloat-free base. Ideal for MicroG or privacy setups)*</sub> | **File:** [`qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.4.s-RMX3171/qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip)<br>**MD5:** `733dc899d1d8ccef5ddcb308ac77d6a9` |
 | **Google Apps (Patched LiteGapps)**<br><sub>Standalone fallback ARM64 native Play Services & Store (~64 MB)</sub> | **File:** [`LiteGapps-arm64-10.0-RMX3171-Patched.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.4.s-RMX3171/LiteGapps-arm64-10.0-RMX3171-Patched.zip)<br>**MD5:** `1f88d8c33284f7a7c7534283256f663b` |
-| **Audio Boost Addon (Optional)**<br><sub>Hardware-calibrated MediaTek analog gain boost (+4dB speaker / +6dB earpiece, ~5.4 KB)</sub> | **File:** [`N30A_AudioBoost_Magisk.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.4.s-RMX3171/N30A_AudioBoost_Magisk.zip)<br>**MD5:** `bedf0e69d2a69aa2e1836b2ca42abd97`<br>*(Source & suite: [Realme-Narzo-30A-Magisk-Addons](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons))* |
 
 > [!NOTE]
 > ### 💡 Which ROM Package Should You Choose?
