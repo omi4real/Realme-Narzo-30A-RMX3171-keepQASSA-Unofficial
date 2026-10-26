@@ -154,9 +154,7 @@ All flashable binaries and packages are hosted on the **[Releases (v2.4.s-RMX317
 > Android assumes you only ever want to hear one app at a time, and stock OEM tuning assumes you prefer quiet speakers. Both assumptions were incorrect.
 >
 > If you want +15 dB uncapped hardware speaker gain, simultaneous multi-app audio playback, and 180Hz gaming touch polling:  
-> 👉 [**Realme Narzo 30A Magisk Addons Suite**](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons)  
->
-> *(Flashing takes thirty seconds. Explaining the volume to your household will take longer.)*
+> 👉 [**Realme Narzo 30A Magisk Addons Suite**](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons)
 
 ---
 
