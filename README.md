@@ -8,10 +8,11 @@
 [![Type](https://img.shields.io/badge/Type-Unofficial_Port-orange?style=flat-square)](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial)
 [![Status](https://img.shields.io/badge/Status-Stable_/_Daily_Driver-brightgreen?style=flat-square)](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial)
 [![Maintainer](https://img.shields.io/badge/Maintainer-omi4real-blueviolet?style=flat-square)](https://github.com/omi4real)
+[![Magisk Addons](https://img.shields.io/badge/Magisk-Addons_Suite-brightgreen?style=flat-square&logo=magisk)](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons)
 
 A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo 30A (`RMX3171`)**. Yes, Android 10 in the big '26 (**#keepQalive**), because modern OS bloat wasn't built for this hardware, and having instant app launches with two-day 6000mAh battery life beats chasing Android version numbers.
 
-[**Downloads**](#downloads) • [**Highlights**](#highlights) • [**Device Specs**](#device-specs) • [**Screenshots**](#screenshots) • [**Flashing Guide**](#flashing-instructions) • [**What's Working**](#system-status) • [**Credits**](#credits)
+[**Downloads**](#downloads) • [**Magisk Addons**](#magisk-addons) • [**Highlights**](#highlights) • [**Device Specs**](#device-specs) • [**Screenshots**](#screenshots) • [**Flashing Guide**](#flashing-instructions) • [**What's Working**](#system-status) • [**Credits**](#credits)
 
 </div>
 
@@ -145,6 +146,19 @@ All flashable binaries and packages are hosted on the **[Releases (v2.4.s-RMX317
 
 ---
 
+<a id="magisk-addons"></a>
+## 🧰 Want Even More Power? (Magisk Addons Suite)
+
+> [!TIP]
+> ### 🔊 Need Extra Loudness or Dual-Audio Concurrency?
+> If +15 dB speaker volume that wakes up your entire neighborhood, simultaneous multi-app audio playback (YouTube + Brave Browser playing together with zero pauses), or 180Hz gaming touch sampling rates sound like your vibe, we've got you covered.
+>
+> Check out the official companion suite:  
+> 👉 [**Realme Narzo 30A Magisk Addons Suite**](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons) ⚡  
+> *(Because stock speaker volume is polite, but your music playlist definitely isn't.)* 🎧🔥
+
+---
+
 <a id="flashing-instructions"></a>
 ## 🛠️ Flashing Instructions
 
@@ -160,7 +174,7 @@ All flashable binaries and packages are hosted on the **[Releases (v2.4.s-RMX317
 2. **Flash the ROM ZIP directly:** *(Do NOT manually wipe system or vendor partitions in recovery; the ROM installer flashes the raw block image cleanly!)*
    - **For Google Services / Play Store (Recommended):** Flash `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip`.
    - **For Clean Experience / MicroG:** Flash `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`.
-3. **Flash Magisk (Optional):** Flash Magisk (v30.7 or latest) if you want root access or Magisk modules. *(Note: Our built-in device spoofing already handles Google Play Integrity out of the box without needing Magisk!).*
+3. **Flash Magisk (Optional):** Flash Magisk (v30.7 or latest) if you want root access or want to install our [**Magisk Addons Suite**](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons) for hardware audio boost and multi-audio concurrency. *(Note: Our built-in device spoofing already handles Google Play Integrity out of the box without needing root!).*
 4. **Format Data (MANDATORY):** Go to **Wipe** → **Format Data** → type `yes`. *(Do NOT skip this: format data is required to reset Android encryption and prevent bootloops!).*
 5. **Reboot to System** & enjoy silky-smooth Android 10 performance!
 
