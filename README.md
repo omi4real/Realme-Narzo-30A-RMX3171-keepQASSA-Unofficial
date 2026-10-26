@@ -67,8 +67,9 @@ A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo
 * **🎨 LiveDisplay Picture Adjustment:** Full hardware RGB calibration and saturation sliders enabled in Settings without triggering MediaTek SurfaceFlinger hardware composer lockups.
 * **📶 Dual-Band 5 GHz Hotspot (`wifi-service.jar`):** Overrode MediaTek stock constraints to allow full 5 GHz Wi-Fi hotspot broadcasting.
 * **🔋 Fast Charging with Hardware Thermal Management (QC/PD up to 18W):** Native fast charging governed by the onboard Texas Instruments BQ2589x controller, delivering up to 9V @ 2A (18W) with dynamic Li-ion constant-voltage thermal tapering for cool operation and maximum battery lifespan.
-* **🏠 Customized Shady Launcher with Google Search Switch:** Seamless toggle built into Launcher Home Settings, allowing instant switching between offline app search and Google App search.
-* **⚙️ RealmeParts Hardware Suite:** Pre-baked device features app providing real-time FPS overlay, USB-OTG quick toggle, and hardware performance switches.
+* **🎵 Native Multi Audio Focus (`Settings -> #keepQASSA -> Miscellaneous`):** Built directly into the Android framework (`services.jar`), allowing simultaneous multi-app audio playback without pauses or ducking (e.g. YouTube + Brave, or gaming with background podcasts), while preserving incoming call and alarm preemption.
+* **🏠 Customized Shady Launcher with Google Search Switch:** Seamless toggle built into Launcher Home Settings, allowing instant switching between offline app search and Google App search, paired with zero-latency app tap registration.
+* **⚙️ RealmeParts Hardware Suite:** Pre-baked device features app providing real-time FPS overlay, USB-OTG quick toggle, and a dedicated *Smooth scrolling* switch (180Hz gaming touch sampling rate).
 
 ---
 
@@ -130,13 +131,13 @@ A fast, daily-driver **Android 10 (Q) Custom ROM (Port)** for the **Realme Narzo
 <a id="downloads"></a>
 ## 📦 Downloads & Checksums
 
-All flashable binaries and packages are hosted on the **[Releases (v2.4.s-RMX3171)](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/tag/v2.4.s-RMX3171)** page:
+All flashable binaries and packages are hosted on the **[Releases (v2.5.s-RMX3171)](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/tag/v2.5.s-RMX3171)** page:
 
 | Deliverable | File & MD5 Checksum |
 | :--- | :--- |
-| **Pre-baked GApps ROM (Recommended)**<br><sub>Full flashable Android 10 OS (~1.10 GB)<br>*(Google Play Store & GMS pre-integrated into system, zero recovery flash issues!)*</sub> | **File:** [`qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.4.s-RMX3171/qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip)<br>**MD5:** `4bd9e0ad32461f5e3294b012d3575dc4` |
-| **Vanilla ROM (Clean / MicroG)**<br><sub>Full flashable Android 10 OS (~1.09 GB)<br>*(Super clean, bloat-free base. Ideal for MicroG or privacy setups)*</sub> | **File:** [`qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.4.s-RMX3171/qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip)<br>**MD5:** `733dc899d1d8ccef5ddcb308ac77d6a9` |
-| **Google Apps (Patched LiteGapps)**<br><sub>Standalone fallback ARM64 native Play Services & Store (~64 MB)</sub> | **File:** [`LiteGapps-arm64-10.0-RMX3171-Patched.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.4.s-RMX3171/LiteGapps-arm64-10.0-RMX3171-Patched.zip)<br>**MD5:** `1f88d8c33284f7a7c7534283256f663b` |
+| **Pre-baked GApps ROM (Recommended)**<br><sub>Full flashable Android 10 OS (~1.10 GB)<br>*(Google Play Store & GMS pre-integrated into system, zero recovery flash issues!)*</sub> | **File:** [`qassa_Sisu-v2.5.s-RMX3171-20250617-0312-GApps-signed.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.5.s-RMX3171/qassa_Sisu-v2.5.s-RMX3171-20250617-0312-GApps-signed.zip)<br>**MD5:** `d41b0baac15ffcf943e3ee210112dabc` |
+| **Vanilla ROM (Clean / MicroG)**<br><sub>Full flashable Android 10 OS (~1.09 GB)<br>*(Super clean, bloat-free base. Ideal for MicroG or privacy setups)*</sub> | **File:** [`qassa_Sisu-v2.5.s-RMX3171-20250617-0312-Vanilla-signed.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.5.s-RMX3171/qassa_Sisu-v2.5.s-RMX3171-20250617-0312-Vanilla-signed.zip)<br>**MD5:** `6706dbfda4efb373944e058608eaf76e` |
+| **Google Apps (Patched LiteGapps)**<br><sub>Standalone fallback ARM64 native Play Services & Store (~64 MB)</sub> | **File:** [`LiteGapps-arm64-10.0-RMX3171-Patched.zip`](https://github.com/omi4real/Realme-Narzo-30A-RMX3171-keepQASSA-Unofficial/releases/download/v2.5.s-RMX3171/LiteGapps-arm64-10.0-RMX3171-Patched.zip)<br>**MD5:** `1f88d8c33284f7a7c7534283256f663b` |
 
 > [!NOTE]
 > ### 💡 Which ROM Package Should You Choose?
@@ -171,8 +172,8 @@ All flashable binaries and packages are hosted on the **[Releases (v2.4.s-RMX317
 ### Installation Steps
 1. **Reboot to Recovery Mode** (PBRP for Realme UI 1.0).
 2. **Flash the ROM ZIP directly:** *(Do NOT manually wipe system or vendor partitions in recovery; the ROM installer flashes the raw block image cleanly!)*
-   - **For Google Services / Play Store (Recommended):** Flash `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-GApps-signed.zip`.
-   - **For Clean Experience / MicroG:** Flash `qassa_Sisu-v2.4.s-RMX3171-20250617-0312-Vanilla-signed.zip`.
+   - **For Google Services / Play Store (Recommended):** Flash `qassa_Sisu-v2.5.s-RMX3171-20250617-0312-GApps-signed.zip`.
+   - **For Clean Experience / MicroG:** Flash `qassa_Sisu-v2.5.s-RMX3171-20250617-0312-Vanilla-signed.zip`.
 3. **Flash Magisk (Optional):** Flash Magisk (v30.7 or latest) if you want root access or want to install our [**Magisk Addons Suite**](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons) for hardware audio boost and multi-audio concurrency. *(Note: Our built-in device spoofing already handles Google Play Integrity out of the box without needing root!).*
 4. **Format Data (MANDATORY):** Go to **Wipe** → **Format Data** → type `yes`. *(Do NOT skip this: format data is required to reset Android encryption and prevent bootloops!).*
 5. **Reboot to System** & enjoy silky-smooth Android 10 performance!
