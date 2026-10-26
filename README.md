@@ -147,15 +147,16 @@ All flashable binaries and packages are hosted on the **[Releases (v2.4.s-RMX317
 ---
 
 <a id="magisk-addons"></a>
-## 🧰 Want Even More Power? (Magisk Addons Suite)
+## 🧰 Magisk Addons Suite
 
 > [!TIP]
-> ### 🔊 Need Extra Loudness or Dual-Audio Concurrency?
-> If +15 dB speaker volume that wakes up your entire neighborhood, simultaneous multi-app audio playback (YouTube + Brave Browser playing together with zero pauses), or 180Hz gaming touch sampling rates sound like your vibe, we've got you covered.
+> ### 🔊 For When Standard Volume Feels Like a Suggestion
+> Android assumes you only ever want to hear one app at a time, and stock OEM tuning assumes you prefer quiet speakers. Both assumptions were incorrect.
 >
-> Check out the official companion suite:  
-> 👉 [**Realme Narzo 30A Magisk Addons Suite**](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons) ⚡  
-> *(Because stock speaker volume is polite, but your music playlist definitely isn't.)* 🎧🔥
+> If you want +15 dB uncapped hardware speaker gain, simultaneous multi-app audio playback, and 180Hz gaming touch polling:  
+> 👉 [**Realme Narzo 30A Magisk Addons Suite**](https://github.com/omi4real/Realme-Narzo-30A-Magisk-Addons)  
+>
+> *(Flashing takes thirty seconds. Explaining the volume to your household will take longer.)*
 
 ---
 
